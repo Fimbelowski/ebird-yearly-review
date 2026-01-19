@@ -18,11 +18,14 @@ const MONTHS = [
   "December",
 ];
 
-export default function getTargetSpeciesByMonth(
-  barchartsPath: string,
-  biggestSpeciesMissOnly = false,
-) {
+interface Options {
+  biggestSpeciesMissOnly?: boolean;
+  yearlyRoadmap?: boolean;
+}
+
+export default function getTargetSpeciesByMonth(options: Options = {}) {
   const {
+    barchartsPath,
     missThreshold,
     observationsPath,
     speciesCommonNameCorrectionMap = new Map(),
@@ -31,9 +34,11 @@ export default function getTargetSpeciesByMonth(
     year,
   } = config;
 
+  const { biggestSpeciesMissOnly = false, yearlyRoadmap = false } = options;
+
   let observations: EbirdObservation[] = [];
 
-  if (observationsPath !== undefined) {
+  if (!yearlyRoadmap) {
     observations = parseEbirdData(observationsPath).filter(
       ({ date, stateOrProvince }) =>
         date.startsWith(`${year}`) && stateOrProvince === targetStateOrProvince,

@@ -1,20 +1,18 @@
 import getTargetSpeciesByMonth from "./src/getTargetSpeciesByMonth.ts";
 
-// const missesByMonth = getTargetSpeciesByMonth(
-//   "./inputs/ebird_US-NY-029__1900_2026_1_12_barchart.txt",
-// );
+// const missesByMonth = getTargetSpeciesByMonth();
 
 // console.log(missesByMonth);
 
-// const missesByMonthLargest = getTargetSpeciesByMonth(
-//   "./inputs/ebird_US-NY-029__1900_2026_1_12_barchart.txt",
-// );
+// const missesByMonthLargest = getTargetSpeciesByMonth({
+//   biggestSpeciesMissOnly: true,
+// });
 
 // console.log(missesByMonthLargest);
 
-const yearlyTargetSpeciesRoadmap = getTargetSpeciesByMonth(
-  "./inputs/ebird_US-NY-029__1900_2026_1_12_barchart.txt",
-  true,
-);
+const yearlyTargetSpeciesRoadmap = getTargetSpeciesByMonth({
+  biggestSpeciesMissOnly: true,
+  yearlyRoadmap: true,
+});
 
 console.log(yearlyTargetSpeciesRoadmap);
