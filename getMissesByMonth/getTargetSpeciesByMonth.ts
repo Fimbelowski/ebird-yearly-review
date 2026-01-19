@@ -1,3 +1,4 @@
+import config from "../config.ts";
 import parseEbirdBarcharts from "../parseEbirdBarcharts.ts";
 import parseEbirdData from "../parseEbirdData.ts";
 import type EbirdObservation from "../types/EbirdObservation.ts";
@@ -17,36 +18,18 @@ const MONTHS = [
   "December",
 ];
 
-interface Options {
-  biggestSpeciesMissOnly?: boolean;
-  missThreshold: number;
-  // Some species common names appear differently in observations compared to bar charts. This map exists to address those inconsistencies.
-  // If you notice an inconsistency you can correct it by adding the name as it appears in observations and then the name as it appears on bar charts.
-  // e.g. new Map([
-  //  ['Rock Pigeon (Feral Pigeon)', 'Rock Pigeon']
-  // ])
-  observationsPath?: string;
-  outputAsCsv?: boolean;
-  speciesCommonNameCorrectionMap?: Map<string, string>;
-  targetCounty?: string;
-  targetStateOrProvince: string;
-  year: number;
-}
-
 export default function getTargetSpeciesByMonth(
   barchartsPath: string,
-  options: Options,
+  biggestSpeciesMissOnly = false,
 ) {
   const {
-    biggestSpeciesMissOnly = false,
     missThreshold,
     observationsPath,
-    outputAsCsv = false,
     speciesCommonNameCorrectionMap = new Map(),
     targetCounty,
     targetStateOrProvince,
     year,
-  } = options;
+  } = config;
 
   let observations: EbirdObservation[] = [];
 
@@ -118,41 +101,37 @@ export default function getTargetSpeciesByMonth(
     misses.sort(([, frequencyA], [, frequencyB]) => frequencyB - frequencyA);
   });
 
-  if (outputAsCsv) {
-    const rows: string[] = [];
+  const rows: string[] = [];
 
-    const monthsRow: string[] = [];
-    for (let i = 0; i < MONTHS.length; i++) {
-      monthsRow.push(MONTHS[i], "");
-    }
-
-    rows.push(monthsRow.join(","));
-
-    let numAdditionalRows = 0;
-
-    for (let i = 0; i < monthlyMisses.length; i++) {
-      numAdditionalRows = Math.max(numAdditionalRows, monthlyMisses[i].length);
-    }
-
-    for (let i = 0; i < numAdditionalRows; i++) {
-      const columns: Array<number | string> = [];
-
-      for (let j = 0; j < monthlyMisses.length; j++) {
-        const targetSpecies = monthlyMisses[j][i];
-
-        if (targetSpecies !== undefined) {
-          const [speciesCommonName, frequency] = targetSpecies;
-          columns.push(speciesCommonName, frequency);
-        } else {
-          columns.push("", "");
-        }
-      }
-
-      rows.push(columns.join(","));
-    }
-
-    return rows.join("\n");
+  const monthsRow: string[] = [];
+  for (let i = 0; i < MONTHS.length; i++) {
+    monthsRow.push(MONTHS[i], "");
   }
 
-  return monthlyMisses;
+  rows.push(monthsRow.join(","));
+
+  let numAdditionalRows = 0;
+
+  for (let i = 0; i < monthlyMisses.length; i++) {
+    numAdditionalRows = Math.max(numAdditionalRows, monthlyMisses[i].length);
+  }
+
+  for (let i = 0; i < numAdditionalRows; i++) {
+    const columns: Array<number | string> = [];
+
+    for (let j = 0; j < monthlyMisses.length; j++) {
+      const targetSpecies = monthlyMisses[j][i];
+
+      if (targetSpecies !== undefined) {
+        const [speciesCommonName, frequency] = targetSpecies;
+        columns.push(speciesCommonName, frequency);
+      } else {
+        columns.push("", "");
+      }
+    }
+
+    rows.push(columns.join(","));
+  }
+
+  return rows.join("\n");
 }
