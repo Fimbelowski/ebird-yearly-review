@@ -1,7 +1,7 @@
-import config from "../config.ts";
-import parseEbirdBarcharts from "../parseEbirdBarcharts.ts";
-import parseEbirdData from "../parseEbirdData.ts";
-import type EbirdObservation from "../types/EbirdObservation.ts";
+import config from "./config.ts";
+import parseEbirdBarcharts from "./parseEbirdBarcharts.ts";
+import parseEbirdData from "./parseEbirdData.ts";
+import type EbirdObservation from "./types/EbirdObservation.ts";
 
 const MONTHS = [
   "January",
