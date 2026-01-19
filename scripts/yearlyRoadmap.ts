@@ -1,8 +1,10 @@
+import * as fs from "fs";
+
 import getTargetSpeciesByMonth from "../src/getTargetSpeciesByMonth.ts";
 
-const yearlyTargetSpeciesRoadmap = getTargetSpeciesByMonth({
+const yearlyRoadmap = getTargetSpeciesByMonth({
   biggestSpeciesMissOnly: true,
   yearlyRoadmap: true,
 });
 
-console.log(yearlyTargetSpeciesRoadmap);
+fs.writeFileSync("./output/yearlyRoadmap.csv", yearlyRoadmap);

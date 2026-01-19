@@ -1,7 +1,9 @@
+import * as fs from "fs";
+
 import getTargetSpeciesByMonth from "../src/getTargetSpeciesByMonth.ts";
 
 const missesByMonthLargest = getTargetSpeciesByMonth({
   biggestSpeciesMissOnly: true,
 });
 
-console.log(missesByMonthLargest);
+fs.writeFileSync("./output/missesByMonthLargest.csv", missesByMonthLargest);

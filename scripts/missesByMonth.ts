@@ -1,5 +1,7 @@
+import * as fs from "fs";
+
 import getTargetSpeciesByMonth from "../src/getTargetSpeciesByMonth.ts";
 
 const missesByMonth = getTargetSpeciesByMonth();
 
-console.log(missesByMonth);
+fs.writeFileSync("./output/missesByMonth.csv", missesByMonth);
