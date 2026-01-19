@@ -2,5 +2,10 @@
   "type": "module",
   "devDependencies": {
     "@types/node": "^25.0.3"
+  },
+  "scripts": {
+    "missesByMonth": "node scripts/missesByMonth.ts",
+    "missesByMonthLargest": "node scripts/missesByMonthLargest.ts",
+    "yearlyRoadmap": "node scripts/yearlyRoadmap.ts"
   }
 }
