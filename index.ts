@@ -1,10 +1,10 @@
 import getTargetSpeciesByMonth from "./getMissesByMonth/getTargetSpeciesByMonth.ts";
 
 // const missesByMonth = getTargetSpeciesByMonth(
-//   "./ebird_US-NY-029__1900_2026_1_12_barchart.txt",
+//   "./inputs/ebird_US-NY-029__1900_2026_1_12_barchart.txt",
 //   {
 //     missThreshold: 0.05,
-//     observationsPath: "./MyEBirdData.csv",
+//     observationsPath: "./inputs/MyEBirdData.csv",
 //     speciesCommonNameCorrectionMap: new Map([
 //       ["Rock Pigeon (Feral Pigeon)", "Rock Pigeon"],
 //     ]),
@@ -17,11 +17,11 @@ import getTargetSpeciesByMonth from "./getMissesByMonth/getTargetSpeciesByMonth.
 // console.log(missesByMonth);
 
 // const missesByMonthLargest = getTargetSpeciesByMonth(
-//   "./ebird_US-NY-029__1900_2026_1_12_barchart.txt",
+//   "./inputs/ebird_US-NY-029__1900_2026_1_12_barchart.txt",
 //   {
 //     biggestSpeciesMissOnly: true,
 //     missThreshold: 0.05,
-//     observationsPath: "./MyEBirdData.csv",
+//     observationsPath: "./inputs/MyEBirdData.csv",
 //     speciesCommonNameCorrectionMap: new Map([
 //       ["Rock Pigeon (Feral Pigeon)", "Rock Pigeon"],
 //     ]),
@@ -31,8 +31,10 @@ import getTargetSpeciesByMonth from "./getMissesByMonth/getTargetSpeciesByMonth.
 //   },
 // );
 
+// console.log(missesByMonthLargest);
+
 const yearlyTargetSpeciesRoadmap = getTargetSpeciesByMonth(
-  "./ebird_US-NY-029__1900_2026_1_12_barchart.txt",
+  "./inputs/ebird_US-NY-029__1900_2026_1_12_barchart.txt",
   {
     biggestSpeciesMissOnly: true,
     missThreshold: 0.05,
