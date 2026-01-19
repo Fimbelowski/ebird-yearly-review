@@ -1,5 +1,5 @@
 import addPropertyToEbirdObservation from "./addPropertyToEbirdObservation.ts";
-import type EbirdObservation from "./types/EbirdObservation";
+import type EbirdObservation from "./types/EbirdObservation.ts";
 
 function getNextValueOrThrow(values: string[]) {
   const nextValue = values.shift();
@@ -12,7 +12,7 @@ function getNextValueOrThrow(values: string[]) {
 }
 
 export default function buildEbirdObservationFromCommaSeparatedValues(
-  commaSeparatedValues: string
+  commaSeparatedValues: string,
 ): EbirdObservation {
   const observation = {};
 
@@ -25,25 +25,25 @@ export default function buildEbirdObservationFromCommaSeparatedValues(
   addPropertyToEbirdObservation(
     observation,
     "submissionId",
-    curriedGetNextValueOrThrow()
+    curriedGetNextValueOrThrow(),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "commonName",
-    curriedGetNextValueOrThrow()
+    curriedGetNextValueOrThrow(),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "scientificName",
-    curriedGetNextValueOrThrow()
+    curriedGetNextValueOrThrow(),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "taxonomicOrder",
-    parseInt(curriedGetNextValueOrThrow(), 10)
+    parseInt(curriedGetNextValueOrThrow(), 10),
   );
 
   const count = curriedGetNextValueOrThrow();
@@ -51,13 +51,13 @@ export default function buildEbirdObservationFromCommaSeparatedValues(
   addPropertyToEbirdObservation(
     observation,
     "count",
-    count === "X" ? count : parseInt(count, 10)
+    count === "X" ? count : parseInt(count, 10),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "stateOrProvince",
-    curriedGetNextValueOrThrow()
+    curriedGetNextValueOrThrow(),
   );
 
   const county = curriedGetNextValueOrThrow();
@@ -69,43 +69,43 @@ export default function buildEbirdObservationFromCommaSeparatedValues(
   addPropertyToEbirdObservation(
     observation,
     "locationId",
-    curriedGetNextValueOrThrow()
+    curriedGetNextValueOrThrow(),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "location",
-    curriedGetNextValueOrThrow()
+    curriedGetNextValueOrThrow(),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "latitude",
-    parseFloat(curriedGetNextValueOrThrow())
+    parseFloat(curriedGetNextValueOrThrow()),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "longitude",
-    parseFloat(curriedGetNextValueOrThrow())
+    parseFloat(curriedGetNextValueOrThrow()),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "date",
-    curriedGetNextValueOrThrow()
+    curriedGetNextValueOrThrow(),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "time",
-    curriedGetNextValueOrThrow()
+    curriedGetNextValueOrThrow(),
   );
 
   addPropertyToEbirdObservation(
     observation,
     "protocol",
-    curriedGetNextValueOrThrow()
+    curriedGetNextValueOrThrow(),
   );
 
   const durationMinutes = curriedGetNextValueOrThrow();
@@ -114,7 +114,7 @@ export default function buildEbirdObservationFromCommaSeparatedValues(
     addPropertyToEbirdObservation(
       observation,
       "durationMinutes",
-      parseInt(durationMinutes, 10)
+      parseInt(durationMinutes, 10),
     );
   }
 
@@ -123,7 +123,7 @@ export default function buildEbirdObservationFromCommaSeparatedValues(
   addPropertyToEbirdObservation(
     observation,
     "allObservationsReported",
-    allObservationsReported === "1"
+    allObservationsReported === "1",
   );
 
   const distanceTraveledKilometers = curriedGetNextValueOrThrow();
@@ -132,7 +132,7 @@ export default function buildEbirdObservationFromCommaSeparatedValues(
     addPropertyToEbirdObservation(
       observation,
       "distanceTraveledKilometers",
-      parseFloat(distanceTraveledKilometers)
+      parseFloat(distanceTraveledKilometers),
     );
   }
 
@@ -142,14 +142,14 @@ export default function buildEbirdObservationFromCommaSeparatedValues(
     addPropertyToEbirdObservation(
       observation,
       "areaCoveredHectares",
-      parseFloat(areaCoveredHectares)
+      parseFloat(areaCoveredHectares),
     );
   }
 
   addPropertyToEbirdObservation(
     observation,
     "numObservers",
-    parseInt(curriedGetNextValueOrThrow(), 10)
+    parseInt(curriedGetNextValueOrThrow(), 10),
   );
 
   // All properties from here onward are optional, so there may not be any values remaining. If any value is undefined, we simply return early.
@@ -184,7 +184,7 @@ export default function buildEbirdObservationFromCommaSeparatedValues(
     addPropertyToEbirdObservation(
       observation,
       "checklistComments",
-      checklistComments
+      checklistComments,
     );
   }
 
@@ -198,7 +198,7 @@ export default function buildEbirdObservationFromCommaSeparatedValues(
     addPropertyToEbirdObservation(
       observation,
       "mlCatalogNumbers",
-      mlCatalogNumbers.split(" ")
+      mlCatalogNumbers.split(" "),
     );
   }
 

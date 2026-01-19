@@ -1,4 +1,4 @@
-import getTargetSpeciesByMonth from "./getTargetSpeciesByMonth.ts";
+import getTargetSpeciesByMonth from "./src/getTargetSpeciesByMonth.ts";
 
 // const missesByMonth = getTargetSpeciesByMonth(
 //   "./inputs/ebird_US-NY-029__1900_2026_1_12_barchart.txt",
