@@ -14,7 +14,7 @@ const config: Config = {
   ]),
   targetCounty: "Erie",
   targetStateOrProvince: "US-NY",
-  year: 2025,
+  targetYear: 2025,
 };
 
 export default config;

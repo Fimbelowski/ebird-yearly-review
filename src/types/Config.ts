@@ -5,5 +5,5 @@ export default interface Config {
   speciesCommonNameCorrectionMap: Map<string, string>;
   targetCounty?: string;
   targetStateOrProvince: string;
-  year: number;
+  targetYear: number;
 }

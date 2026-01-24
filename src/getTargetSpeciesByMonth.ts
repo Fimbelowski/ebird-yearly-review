@@ -1,7 +1,8 @@
 import config from "./config.ts";
-import parseEbirdBarcharts from "./parseEbirdBarcharts.ts";
-import parseEbirdData from "./parseEbirdData.ts";
 import type EbirdObservation from "./types/EbirdObservation.ts";
+import filterEbirdObservations from "./filterEbirdObservations.ts";
+import parseEbirdBarcharts from "./parseEbirdBarcharts.ts";
+import parseEbirdObservations from "./parseEbirdObservations.ts";
 
 const MONTHS = [
   "January",
@@ -31,7 +32,7 @@ export default function getTargetSpeciesByMonth(options: Options = {}) {
     speciesCommonNameCorrectionMap = new Map(),
     targetCounty,
     targetStateOrProvince,
-    year,
+    targetYear,
   } = config;
 
   const { biggestSpeciesMissOnly = false, yearlyRoadmap = false } = options;
@@ -39,15 +40,15 @@ export default function getTargetSpeciesByMonth(options: Options = {}) {
   let observations: EbirdObservation[] = [];
 
   if (!yearlyRoadmap) {
-    observations = parseEbirdData(observationsPath).filter(
-      ({ date, stateOrProvince }) =>
-        date.startsWith(`${year}`) && stateOrProvince === targetStateOrProvince,
-    );
+    observations = parseEbirdObservations(observationsPath);
   }
 
-  if (targetCounty !== undefined) {
-    observations = observations.filter(({ county }) => county === targetCounty);
-  }
+  observations = filterEbirdObservations(
+    observations,
+    targetYear,
+    targetStateOrProvince,
+    targetCounty,
+  );
 
   const uniqueSpeciesObservedCommonNames = new Set<string>();
 
