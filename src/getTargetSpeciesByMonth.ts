@@ -1,4 +1,4 @@
-import config from "./config.ts";
+import config from "../config.ts";
 import type EbirdObservation from "./types/EbirdObservation.ts";
 import filterEbirdObservations from "./filterEbirdObservations.ts";
 import parseEbirdBarcharts from "./parseEbirdBarcharts.ts";
