@@ -1,4 +1,4 @@
-import type Config from "./types/Config.ts";
+import type Config from "./src/types/Config.ts";
 
 const config: Config = {
   barchartsPath: "./inputs/ebird_US-NY-029__1900_2026_1_12_barchart.txt",
