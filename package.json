@@ -4,6 +4,8 @@
     "@types/node": "^25.0.3"
   },
   "scripts": {
+    "allSpeciesOnlySeenOnce": "node scripts/allSpeciesOnlySeenOnce.ts",
+    "likelySpeciesOnlySeenOnce": "node scripts/likelySpeciesOnlySeenOnce.ts",
     "missesByMonth": "node scripts/missesByMonth.ts",
     "missesByMonthLargest": "node scripts/missesByMonthLargest.ts",
     "yearlyRoadmap": "node scripts/yearlyRoadmap.ts"
